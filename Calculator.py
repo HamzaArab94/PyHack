@@ -2,21 +2,27 @@
 from tkinter import *
 import tkinter as tk 
 
+global count
 def calculate():
      hours = float(employeeHours.get())
      rate = float(employeeRate.get())   
-     taxes = 0.80
+     taxes = 0.85
      salary = rate * hours * taxes
-     results = Label(root, text = "Weekly Salary: $%.2f" % salary).grid(row=7, column=1)
+     salary2 = salary
+     if count == 0:
+          results = Label(root, text = "Week's Pay: $%.2f" % salary).grid(row=7, column=1)
+     else:
+          salary2, salary = salary, salary2
+          results = Label(root, text = "Week's Pay: $%.2f" % salary2).grid(row=7, column=1)
+          results = Label(root, text = "Last Week's Pay: $%.2f" % salary).grid(row=7, column=1)
      return          
 
           
 if __name__ == '__main__':
+     count = 0
      root = tk.Tk()
      root.geometry('450x200')
      root.title('Payroll Calculator')
-     can = 0.80
-     us = 0.85
      
      employeeID = tk.StringVar(root)
      employeeName = tk.StringVar(root)
